@@ -1,0 +1,31 @@
+@if (fleet.loadError(); as message) {
+  <p class="fleet-page__error alert" role="alert">{{ message }}</p>
+}
+
+@for (banner of fleet.banners(); track banner.vehicleId + banner.routineId) {
+  <app-due-soon-banner [text]="banner.text" />
+}
+
+<app-fleet-stats [summary]="summary()" />
+
+<div class="fleet-page__heading">
+  <div>
+    <h1 class="fleet-page__title">Mis vehículos</h1>
+    <p class="fleet-page__subtitle">El estado de cada rutina es el más urgente entre kilómetros y tiempo.</p>
+  </div>
+  <div class="fleet-page__legend">
+    <app-status-chip label="Al día" severity="ok" />
+    <app-status-chip label="Por vencer" severity="warning" />
+    <app-status-chip label="Vencida" severity="danger" />
+  </div>
+</div>
+
+@if (fleet.loaded() && fleet.vehicles().length === 0) {
+  <p class="fleet-page__empty">Esta flota no tiene vehículos.</p>
+}
+
+<div class="fleet-page__list">
+  @for (vehicle of fleet.vehicles(); track vehicle.id) {
+    <app-vehicle-row [vehicle]="vehicle" [openOrders]="openOrdersOf(vehicle.id)" />
+  }
+</div>

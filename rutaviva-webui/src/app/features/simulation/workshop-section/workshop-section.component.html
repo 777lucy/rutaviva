@@ -1,0 +1,44 @@
+<section class="workshop-section sim-block" [attr.aria-label]="workshopTitle()">
+  <h3>{{ workshopTitle() }}</h3>
+
+  @if (workshopOrders().length === 0) {
+    <p class="sim-block__empty">No hay órdenes para el taller.</p>
+  } @else {
+    <label class="field">
+      Orden
+      <select class="workshop-section__order" (change)="selectOrder($event)">
+        @for (order of workshopOrders(); track order.orderId) {
+          <option [value]="order.orderId" [selected]="order.orderId === selectedOrderKey()">{{ order.plate }} · {{ order.routineName }} · {{ statusLabel(order.status) }}</option>
+        }
+      </select>
+    </label>
+
+    <label class="field">
+      Valor (COP)
+      <input #amount class="workshop-section__amount" type="number" min="0" />
+    </label>
+    <button type="button" class="button button--primary workshop-section__action" [disabled]="!isEnabled('quote')" (click)="quote(amount.valueAsNumber)">{{ labels.quote }}</button>
+
+    @if (isCompleting()) {
+      <div class="workshop-section__row">
+        <label class="field">
+          Kilómetros
+          <input #kilometers class="workshop-section__kilometers" type="number" min="0" />
+        </label>
+        <label class="field">
+          Fecha
+          <input #performedOn class="workshop-section__date" type="date" [value]="today" />
+        </label>
+      </div>
+    }
+
+    <div class="workshop-section__row">
+      <button type="button" class="button workshop-section__action workshop-section__step-action" [disabled]="!isEnabled('start')" (click)="start()">{{ labels.start }}</button>
+      <button type="button" class="button workshop-section__action workshop-section__step-action" [disabled]="!isEnabled('complete')" (click)="complete()">{{ labels.complete }}</button>
+    </div>
+  }
+
+  @if (state.workshopError(); as message) {
+    <p class="workshop-section__error alert" role="alert">{{ message }}</p>
+  }
+</section>

@@ -1,0 +1,24 @@
+.due-soon-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 52px;
+  margin-bottom: 20px;
+  padding: 0 15px;
+  border: 1px solid var(--color-warning-line);
+  border-radius: var(--radius-alert);
+  background: var(--color-banner-bg);
+}
+
+.due-soon-banner__marker {
+  width: 8px;
+  height: 20px;
+  border-radius: 4px;
+  background: var(--color-warning-line);
+}
+
+.due-soon-banner__text {
+  color: var(--color-warning-text);
+  font-size: 15px;
+  font-weight: 600;
+}

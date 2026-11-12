@@ -1,0 +1,12 @@
+<dialog #dialog class="confirm-dialog" [attr.aria-label]="title()">
+  <h2 class="confirm-dialog__title">{{ title() }}</h2>
+  <p class="confirm-dialog__message">{{ message() }}</p>
+  @if (detail()) {
+    <p class="confirm-dialog__detail">{{ detail() }}</p>
+  }
+
+  <div class="confirm-dialog__actions">
+    <button type="button" class="button confirm-dialog__cancel" (click)="onCancel()">{{ cancelLabel() }}</button>
+    <button type="button" [class]="confirmClass()" (click)="onConfirm()">{{ confirmLabel() }}</button>
+  </div>
+</dialog>

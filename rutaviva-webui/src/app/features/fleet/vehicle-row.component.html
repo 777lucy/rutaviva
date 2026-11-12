@@ -1,0 +1,21 @@
+<a [class]="rowClass()" [routerLink]="['/vehicles', vehicle().id]">
+  <span class="vehicle-row__rail" aria-hidden="true"></span>
+
+  <div class="vehicle-row__info">
+    <strong class="vehicle-row__plate">{{ vehicle().plate }}</strong>
+    <p class="vehicle-row__description">
+      {{ vehicle().description }}<span class="vehicle-row__dot">·</span>{{ odometerLabel() }}
+    </p>
+    @for (line of orderLines(); track line.id) {
+      <p class="vehicle-row__order">{{ line.text }}</p>
+    }
+  </div>
+
+  <div class="vehicle-row__routines">
+    @for (chip of routineChips(); track chip.id) {
+      <app-status-chip [label]="chip.label" [severity]="chip.severity" />
+    }
+  </div>
+
+  <span class="vehicle-row__go" aria-hidden="true">›</span>
+</a>

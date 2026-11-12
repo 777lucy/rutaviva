@@ -1,0 +1,30 @@
+.status-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 11px;
+  border-radius: var(--radius-chip);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.status-chip--ok {
+  background: var(--color-ok-bg);
+  color: var(--color-ok-text);
+}
+
+.status-chip--warning {
+  background: var(--color-warning-bg);
+  color: var(--color-warning-text);
+}
+
+.status-chip--danger {
+  background: var(--color-danger-bg);
+  color: var(--color-danger-text);
+}
+
+.status-chip--info {
+  background: var(--color-info-bg);
+  color: var(--color-primary);
+}

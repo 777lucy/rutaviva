@@ -1,0 +1,12 @@
+<section class="order-timeline card" aria-label="Historial">
+  <h2>Historial</h2>
+  <ol class="order-timeline__steps">
+    @for (step of steps(); track step.name) {
+      <li class="order-timeline__step" [class.order-timeline__step--done]="step.done">
+        <span class="order-timeline__dot" aria-hidden="true"></span>
+        <span class="order-timeline__name">{{ step.name }}</span>
+        <span class="order-timeline__detail">{{ step.detail }}</span>
+      </li>
+    }
+  </ol>
+</section>

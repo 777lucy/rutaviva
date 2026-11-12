@@ -1,0 +1,59 @@
+# RutaViva web UI OpenSpec defaults.
+# User-level Cursor rules (alwaysApply) still apply in chat; this file feeds the OpenSpec CLI.
+
+schema: spec-driven
+
+context: |
+  Product: RutaViva fleet preventive maintenance web UI.
+  This change lives only in rutaviva-webui/. Do not modify rutaviva-api.
+
+  Source of truth for screens and copy:
+  - ../docs/ux-proposal.md (the mockup; this is what the UI implements)
+  - ../docs/architecture.md decision A11 (Angular 18, standalone components, signals, plain CSS)
+  - ../docs/domain-model.md for status names and rules the screens must not contradict
+  The API already exists in ../rutaviva-api and is the HTTP contract. Do not invent endpoints.
+
+  Language:
+  - OpenSpec artifacts: English only.
+  - On-screen copy: Spanish, matching docs/ux-proposal.md.
+  - Code identifiers, tests, and commit messages: English.
+
+  UI constraints for this repo (explicit; they override the global Doggie UI standard):
+  - Do not use Doggie UI, Angular Material, NgRx, or single-spa.
+  - Visual design follows the UX mockup: plain CSS, status chips (neutral, warning, danger), cards, and a fixed simulation panel.
+  - Borrow structure from vehicle-schedulestatuschange-webui only: feature folders, one component per file with html/scss/spec, typed models, environment-based API URL, and a shared confirmation dialog. Do not copy its modules, store, or host integration.
+  - Group by owner. A pure function lives in the feature that uses it. shared/ holds only status labels, the status chip, and the confirm dialog. HTTP lives in core/api, one service per API area (fleet, vehicles, orders, telemetry, workshop, system).
+  - Keep each class small. Split a file before it reaches about 150 lines. Pages compose small presentational components. Business rules live in pure functions, not in templates.
+
+  Implementation standards:
+  - ~/.cursor/docs/base-standards.md
+  - ~/.cursor/docs/tdd-workflow.md (RED-GREEN-REFACTOR; pragmatic tiers)
+  - ~/.cursor/docs/frontend-standards.md for testing, services, accessibility, and UX states, except every Doggie UI requirement, which does not apply here.
+
+  Workflow:
+  - Read change artifacts before /opsx-apply.
+  - Strict work (labels, money, which buttons show, banner and simulation rules) is TDD-first: RED before GREEN.
+  - Contract work (HTTP services) locks the API shapes with tests.
+  - Smoke covers the Angular host, routes, and styles. Label those tasks Smoke.
+
+rules:
+  proposal:
+    - Write the entire artifact in English
+    - Follow Satrack global standards in ~/.cursor/docs/base-standards.md
+    - Keep screens aligned with ../docs/ux-proposal.md
+    - Do not propose Doggie UI, Angular Material, NgRx, or single-spa
+  specs:
+    - Write the entire artifact in English
+    - Use Gherkin-style scenarios when describing acceptance behavior
+    - Describe what the user sees and which existing API call backs it
+    - On-screen labels in scenarios stay in Spanish, as in the UX mockup
+  design:
+    - Write the entire artifact in English
+    - Stay inside architecture decision A11 and the size limits in this config
+    - "Reference TDD tiers. Strict for view rules, Contract for HTTP services, Smoke for the host"
+    - Do not specify Doggie UI or Angular Material components
+  tasks:
+    - Write the entire artifact in English
+    - Order TDD-first for Strict and Contract work. RED before GREEN. Label Smoke tasks clearly
+    - Break tasks into chunks of max 2 hours
+    - One component or service per file; do not plan page classes that mix HTTP, rules, and layout

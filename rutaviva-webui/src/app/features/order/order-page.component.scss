@@ -1,0 +1,135 @@
+:host {
+  display: block;
+}
+
+.order-page__error {
+  margin-top: var(--space-3);
+}
+
+.order-page__header {
+  display: grid;
+  gap: 10px;
+  margin-top: var(--space-3);
+}
+
+.order-page__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.order-page__title h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.order-page__subtitle {
+  color: var(--color-muted);
+  font-size: 14px;
+  word-spacing: 4px;
+}
+
+.order-page__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(240px, 1fr);
+  align-items: start;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.order-page__quote {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  min-height: 400px;
+  padding: 28px;
+  container-type: inline-size;
+}
+
+.order-page__quote-label {
+  color: var(--color-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.order-page__price {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: -12px;
+}
+
+.order-page__amount {
+  font-size: clamp(28px, 8cqi, 40px);
+  font-weight: 700;
+}
+
+.order-page__currency {
+  color: var(--color-muted);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.order-page__approval {
+  display: grid;
+  gap: 4px;
+  min-height: 72px;
+  padding: 14px 18px;
+  border: 1px solid var(--color-warning-line);
+  border-radius: var(--radius-alert);
+  background: var(--color-banner-bg);
+  color: var(--color-warning-text);
+}
+
+.order-page__approval-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.order-page__approval-detail {
+  font-size: 13px;
+}
+
+.order-page__notice {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.order-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.order-page__action--approve,
+.order-page__action--reject {
+  width: min(180px, 100%);
+}
+
+.order-page__action--cancel {
+  width: min(200px, 100%);
+}
+
+.order-page__note {
+  margin-top: -8px;
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+@container (max-width: 520px) {
+  .order-page__action--approve,
+  .order-page__action--reject,
+  .order-page__action--cancel {
+    width: 100%;
+  }
+}
+
+@container page (max-width: 860px) {
+  .order-page__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .order-page__quote {
+    min-height: 0;
+  }
+}

@@ -1,0 +1,13 @@
+<div class="routine-row">
+  <span class="routine-row__name">{{ routine().name }}</span>
+  <span class="routine-row__interval">{{ routine().interval }}</span>
+  <span class="routine-row__baseline">{{ baseline() }}</span>
+  <span class="routine-row__remaining">{{ remaining() }}</span>
+  <span class="routine-row__status"><app-status-chip [label]="chip().label" [severity]="chip().severity" /></span>
+
+  @if (routine().openOrder; as order) {
+    <a class="routine-row__order" [routerLink]="['/orders', order.id]">Ver orden<span aria-hidden="true">›</span></a>
+  } @else {
+    <span class="routine-row__no-order">Sin orden abierta</span>
+  }
+</div>

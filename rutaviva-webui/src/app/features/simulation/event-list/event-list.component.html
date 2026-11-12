@@ -1,0 +1,13 @@
+<section class="event-list sim-block" aria-label="Eventos recientes">
+  <h3>Eventos recientes</h3>
+
+  @if (recentLines().length === 0) {
+    <p class="sim-block__empty">Todavía no hay eventos.</p>
+  } @else {
+    <ol>
+      @for (line of recentLines(); track $index) {
+        <li class="event-list__line">{{ line }}</li>
+      }
+    </ol>
+  }
+</section>

@@ -1,0 +1,9 @@
+.workshop-section__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.sim-block .workshop-section__step-action {
+  height: 32px;
+}

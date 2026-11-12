@@ -1,0 +1,50 @@
+.fleet-page__error {
+  margin-bottom: 16px;
+}
+
+.fleet-page__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 24px 0 24px;
+}
+
+.fleet-page__title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+.fleet-page__subtitle {
+  margin-top: 6px;
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.fleet-page__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-right: 142px;
+}
+
+@container page (max-width: 860px) {
+  .fleet-page__heading {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .fleet-page__legend {
+    margin-right: 0;
+  }
+}
+
+.fleet-page__list {
+  display: grid;
+  gap: 12px;
+}
+
+.fleet-page__empty {
+  margin-bottom: 16px;
+  color: var(--color-muted);
+}

@@ -1,0 +1,23 @@
+<form class="reading-form sim-block" (submit)="$event.preventDefault(); submit(vehicleSelect.value, kilometersInput.valueAsNumber)">
+  <h3>Telemetría</h3>
+
+  <div class="reading-form__row">
+    <label class="field">
+      Vehículo
+      <select #vehicleSelect class="reading-form__vehicle">
+        @for (item of orders.vehicles(); track item.id) {
+          <option [value]="item.id">{{ item.plate }}</option>
+        }
+      </select>
+    </label>
+
+    <label class="field">
+      Kilómetros
+      <input #kilometersInput class="reading-form__kilometers" type="number" min="0" />
+    </label>
+  </div>
+
+  <button type="submit" class="button button--primary reading-form__submit" [disabled]="events.readingBusy()">
+    Enviar lectura
+  </button>
+</form>

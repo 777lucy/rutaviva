@@ -1,0 +1,36 @@
+<a class="back-link" routerLink="/"><span aria-hidden="true">‹</span>Volver a la flota</a>
+
+@if (vehicle.loadError(); as message) {
+  <p class="alert vehicle-page__error" role="alert">{{ message }}</p>
+}
+
+@if (vehicle.detail(); as detail) {
+  <header class="vehicle-page__header">
+    <h1>{{ detail.plate }}</h1>
+    <ul class="vehicle-page__pills">
+      <li class="vehicle-page__pill">{{ detail.description }}</li>
+      <li class="vehicle-page__pill">{{ odometerLabel() }}</li>
+      <li class="vehicle-page__pill">{{ detail.workshopName }}</li>
+    </ul>
+  </header>
+
+  <section class="routine-table card" aria-label="Rutinas">
+    <div class="routine-table__head">
+      <span>Rutina</span>
+      <span>Intervalo</span>
+      <span>Base</span>
+      <span>Faltante</span>
+      <span>Estado</span>
+      <span>Orden abierta</span>
+    </div>
+    <ul class="routine-table__rows">
+      @for (routine of detail.routines; track routine.id) {
+        <li><app-routine-row [routine]="routine" /></li>
+      }
+    </ul>
+  </section>
+
+  <p class="vehicle-page__footnote">
+    Una orden completada o cancelada deja de mostrarse. La fila queda solo con el estado de la rutina.
+  </p>
+}

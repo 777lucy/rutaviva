@@ -1,0 +1,42 @@
+.fleet-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@container page (max-width: 720px) {
+  .fleet-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.fleet-stat {
+  display: grid;
+  gap: 2px;
+  height: 84px;
+  padding: 12px 19px;
+}
+
+.fleet-stat__value {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 34px;
+}
+
+.fleet-stat__value--warning {
+  color: var(--color-warning-text);
+}
+
+.fleet-stat__value--danger {
+  color: var(--color-danger-text);
+}
+
+.fleet-stat__value--primary {
+  color: var(--color-primary);
+}
+
+.fleet-stat__label {
+  color: var(--color-muted);
+  font-size: 13px;
+  font-weight: 500;
+}

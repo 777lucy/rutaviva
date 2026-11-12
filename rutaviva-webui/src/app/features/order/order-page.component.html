@@ -1,0 +1,64 @@
+@if (order.loadError(); as message) {
+  <a class="back-link" routerLink="/"><span aria-hidden="true">‹</span>Volver a la flota</a>
+  <p class="alert order-page__error" role="alert">{{ message }}</p>
+}
+
+@if (order.detail(); as detail) {
+  <a class="back-link" [routerLink]="['/vehicles', detail.vehicleId]">
+    <span aria-hidden="true">‹</span>Volver a {{ detail.plate }}
+  </a>
+
+  <header class="order-page__header">
+    <div class="order-page__title">
+      <h1>Orden de servicio</h1>
+      <app-status-chip [label]="statusChipLabel()" severity="info" />
+    </div>
+    <p class="order-page__subtitle">{{ detail.routineName }} · {{ detail.plate }} · {{ detail.workshopName }}</p>
+  </header>
+
+  <div class="order-page__body">
+    <section class="order-page__quote card" aria-label="Cotización del taller">
+      <h2 class="order-page__quote-label">Cotización del taller</h2>
+
+      @if (detail.quoteAmount !== null) {
+        <p class="order-page__price">
+          <span class="order-page__amount">{{ amountLabel() }}</span>
+          <span class="order-page__currency">COP</span>
+        </p>
+      }
+
+      @if (detail.status === 'Quoted') {
+        <div class="order-page__approval">
+          <p class="order-page__approval-title">{{ approvalAlert.title }}</p>
+          <p class="order-page__approval-detail">{{ approvalAlert.detail }}</p>
+        </div>
+      } @else if (notice()) {
+        <p class="order-page__notice">{{ notice() }}</p>
+      }
+
+      @if (actions().length > 0) {
+        <div class="order-page__actions">
+          @for (button of actions(); track button.action) {
+            <button type="button" [class]="button.classes" (click)="askConfirmation(button.action)">
+              {{ button.label }}
+            </button>
+          }
+        </div>
+        <p class="order-page__note">{{ actionsNote }}</p>
+      }
+    </section>
+
+    <app-order-timeline class="order-page__history" [order]="detail" />
+  </div>
+
+  @if (dialogCopy(); as copy) {
+    <app-confirm-dialog
+      [title]="copy.title"
+      [message]="copy.message"
+      [detail]="copy.detail"
+      [confirmLabel]="copy.confirmLabel"
+      [tone]="copy.tone"
+      (confirmed)="runPendingAction()"
+    />
+  }
+}

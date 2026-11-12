@@ -1,0 +1,48 @@
+# Satrack global OpenSpec defaults — copy to <repo>/openspec/config.yaml on init or new repos.
+# User-level Cursor rules (alwaysApply) still apply in chat; this file feeds the OpenSpec CLI.
+
+schema: spec-driven
+
+context: |
+  Satrack global standards apply to all OpenSpec artifacts and /opsx-apply implementation.
+
+  Language:
+  - OpenSpec artifacts: English only (proposal, design, specs, tasks).
+  - End-user UI strings and API problem titles shown to the client: Spanish.
+  - ADO business deliverables: Spanish (see communication-language.mdc).
+
+  Product: RutaViva fleet preventive maintenance. Source of truth:
+  - docs/domain-model.md
+  - docs/architecture.md
+  - docs/ux-proposal.md
+  Solution skeleton already exists: .NET 8 clean architecture (Domain, Application, Infrastructure, Api) plus xUnit test projects. Endpoints are mapped and return 501.
+
+  Implementation standards (read before coding):
+  - ~/.cursor/docs/base-standards.md
+  - ~/.cursor/docs/tdd-workflow.md (RED-GREEN-REFACTOR; pragmatic tiers)
+  - ~/.cursor/docs/backend-standards.md (when touching .NET/API)
+  - ~/.cursor/docs/worker-standards.md (when touching jobs/Kafka/workers)
+
+  Workflow:
+  - Read change artifacts (tasks.md, design.md, specs) before /opsx-apply.
+  - Execute Strict/Contract work TDD-first: RED before GREEN; Smoke separately.
+  - Prefer repo conventions; minimal diff; no Strict/Contract implementation without tests unless user waives TDD.
+
+rules:
+  proposal:
+    - Write the entire artifact in English
+    - Follow Satrack global standards in ~/.cursor/docs/base-standards.md
+    - Keep behavior aligned with docs/domain-model.md, docs/architecture.md, and docs/ux-proposal.md
+  specs:
+    - Write the entire artifact in English
+    - Use Gherkin-style scenarios when describing acceptance behavior
+    - Cover the domain rules, not only HTTP status codes
+  design:
+    - Write the entire artifact in English
+    - Stay inside the clean-architecture decisions in docs/architecture.md
+    - "Reference TDD tiers. Strict for domain, Contract for use cases, Smoke for the host"
+  tasks:
+    - Write the entire artifact in English
+    - "Order TDD-first for Strict and Contract work. RED before GREEN. Label Smoke tasks clearly"
+    - Break tasks into chunks of max 2 hours
+    - Do not implement the Angular app in this change

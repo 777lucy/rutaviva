@@ -1,0 +1,13 @@
+<header class="simulation-panel__header">
+  <h2 id="simulation-panel-title">Simulación</h2>
+  <p class="simulation-panel__note">No son acciones del cliente.</p>
+</header>
+
+@if (events.commandError(); as message) {
+  <p class="simulation-panel__error alert" role="alert">{{ message }}</p>
+}
+
+<app-reading-form />
+<app-daily-review-form />
+<app-workshop-section />
+<app-event-list />

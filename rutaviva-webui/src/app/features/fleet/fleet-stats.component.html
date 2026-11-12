@@ -1,0 +1,8 @@
+<div class="fleet-stats">
+  @for (tile of tiles(); track tile.label) {
+    <div class="fleet-stat card">
+      <strong [class]="'fleet-stat__value fleet-stat__value--' + tile.tone">{{ tile.value }}</strong>
+      <span class="fleet-stat__label">{{ tile.label }}</span>
+    </div>
+  }
+</div>

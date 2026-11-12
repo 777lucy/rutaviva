@@ -1,0 +1,28 @@
+:host {
+  display: grid;
+  gap: var(--space-2);
+}
+
+@media (max-width: 960px) {
+  :host {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    align-items: start;
+  }
+
+  .simulation-panel__header,
+  .simulation-panel__error {
+    grid-column: 1 / -1;
+  }
+}
+
+.simulation-panel__header h2 {
+  color: var(--color-primary);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.simulation-panel__note {
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-size: 12px;
+}

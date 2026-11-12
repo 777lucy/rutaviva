@@ -1,0 +1,25 @@
+<div class="app-shell">
+  <div class="app-shell__main">
+    <header class="app-header">
+      <a class="app-header__home" routerLink="/">
+        <span class="app-header__logo" aria-hidden="true">R</span>
+        <span class="app-header__brand">RutaViva</span>
+      </a>
+
+      <app-breadcrumb />
+
+      <div class="app-header__user">
+        <span class="app-header__avatar" aria-hidden="true">{{ clientInitials }}</span>
+        <span class="app-header__client">{{ clientName }}</span>
+      </div>
+    </header>
+
+    <main class="app-shell__content">
+      <router-outlet />
+    </main>
+  </div>
+
+  <aside class="app-shell__panel" aria-labelledby="simulation-panel-title">
+    <app-simulation-panel />
+  </aside>
+</div>

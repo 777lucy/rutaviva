@@ -1,0 +1,10 @@
+<form class="review-form sim-block" (submit)="$event.preventDefault(); submit(dateInput.value)">
+  <h3>Revisión diaria</h3>
+
+  <label class="field">
+    Fecha · America/Bogota
+    <input #dateInput class="review-form__date" type="date" [value]="today" />
+  </label>
+
+  <button type="submit" class="button button--primary review-form__submit" [disabled]="events.reviewBusy()">Correr revisión</button>
+</form>
